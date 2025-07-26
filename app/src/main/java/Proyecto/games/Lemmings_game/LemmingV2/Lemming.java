@@ -71,7 +71,7 @@ public class Lemming {
         double minClickableX = this.x - margenExtra;
         double maxClickableX = this.x + LemmingConstants.LEMMING_WIDTH + margenExtra;
     
-        double minClickableY = this.y - LemmingConstants.LEMMING_HEIGHT - margenExtra;
+        double minClickableY = this.y - LemmingConstants.LEMMING_HEIGHT - 20;
         double maxClickableY = this.y + LemmingConstants.LEMMING_HEIGHT + margenExtra;
     
         double clickXCam = clickX + camX;
@@ -81,9 +81,11 @@ public class Lemming {
     
         return clickedX && clickedY;
     }
-    
+
     public void draw(Graphics g, int camX) {
-        if (isOnExit) return;
+        if (getState() instanceof SavedState) {
+            return;
+        }
 
         int drawX = getX() - camX;
         int drawY = getY();
@@ -190,6 +192,7 @@ public class Lemming {
     private BufferedImage load(String path) throws IOException {
         return ImageIO.read(getClass().getResourceAsStream(path));
     }
+
     // Setter para el nuevo estado
     public void setState(LemmingState newState) {
         if (currentState != null) currentState.onExit(this);

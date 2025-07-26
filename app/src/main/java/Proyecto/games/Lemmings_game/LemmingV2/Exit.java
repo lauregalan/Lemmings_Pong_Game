@@ -6,8 +6,8 @@ import java.io.IOException;
 
 public class Exit extends Gate {
     private int camX;
-    private int x;
-    private int y;
+    //private int x;
+    //private int y;
     public int savedLemmings = 0;
     private final int width = 100;
     private final int height = 100;
@@ -26,8 +26,8 @@ public class Exit extends Gate {
     }
 
     public void draw(Graphics g, int camX, int camY) {
-        int drawX = x - camX;
-        int drawY = y - camY;
+        int drawX = getX() - camX;
+        int drawY = getY() - camY;
         if (frames != null && frames[currentFrameIndex] != null) {
             updateAnimation();
             g.drawImage(frames[currentFrameIndex], drawX, drawY,100 ,80,null);
@@ -40,7 +40,7 @@ public class Exit extends Gate {
 
     public boolean checkLemming(Lemming lemming){
         if(getBounds().intersects(lemming.getX() - camX, lemming.getY(),16,16)){
-            //System.out.println("llege a la salida");
+            System.out.println("llege a la salida");
         }
         return getBounds().intersects(lemming.getX() - camX, lemming.getY(),16,16);
     }

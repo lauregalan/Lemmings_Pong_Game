@@ -48,6 +48,7 @@ public class Level {
     private int lemmingSpawnY;
     private int pointsLevel; 
     private Minimap minimap; 
+    private int savedLemmings;
 
     public Level(Mapp map, Stock stock, int lemmingsToGenerate, double percentajeToWin, int level, String lvlName, Exit exit, int lemmingSpawnX, int lemmingSpawnY) {
         this.map = map;
@@ -126,7 +127,7 @@ public class Level {
                 long elapsed = System.currentTimeMillis() - cleanDeaths;
 
                 if (elapsed >= 3000) {
-                    pointsLevel = map.getLemmingsSaved() * 10; 
+                    pointsLevel = getSavedLemmings() * 10; 
                     result = true;
                 }
             }
@@ -243,7 +244,7 @@ public class Level {
 
         g.setColor(Color.WHITE);
         g.setFont(new Font("Arial", Font.BOLD, 12));
-        g.drawString("Lemmings salvados: " + getExitModel().getSavedLemmings(), 80, 80);
+        g.drawString("Lemmings salvados: " + getSavedLemmings(), 80, 80);
     }
     
     public void drawEndScreen(Graphics2D g) {
@@ -274,6 +275,14 @@ public class Level {
 
     public String getLevelName(){
         return levelName;
+    }
+
+    public void sumSavedLemmings(){
+        this.savedLemmings++;
+    }
+
+    public int getSavedLemmings(){
+        return savedLemmings; 
     }
 
     public Exit getExit(){

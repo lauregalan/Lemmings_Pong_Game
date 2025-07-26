@@ -50,6 +50,7 @@ public class WalkingState implements LemmingState {
         // Lógica de detección de salida
         if (l.getLevel().getExit().checkLemming(l)) {
             l.setState(new SavedState());
+            System.out.println("Entre a la salida!!");
         }
     }
 

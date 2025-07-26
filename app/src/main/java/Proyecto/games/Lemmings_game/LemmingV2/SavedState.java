@@ -10,7 +10,7 @@ public class SavedState implements LemmingState{
 
     @Override
     public void onEnter(Lemming lemming) {
-        // TODO Auto-generated method stub
+        lemming.getLevel().sumSavedLemmings();
     }
 
     @Override

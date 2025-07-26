@@ -27,6 +27,7 @@ import com.entropyinteractive.Mouse;
 
 import Proyecto.games.Lemmings_game.Model.GameSettingsModel;
 import Proyecto.games.Lemmings_game.Utils.Ability;
+import Proyecto.games.Lemmings_game.Utils.GameState;
 import Proyecto.games.Lemmings_game.Utils.ScoreDatabase;
 
 import Proyecto.games.Lemmings_game.View.GameMenuView;
@@ -55,6 +56,7 @@ public class LemmingGame extends JGame {
     private SettingsModel.Settings settings, backupSettings;
     private static boolean fullScreen = false;
     private boolean isInMenu = true, isInSettings = false, isInScore = false, gamePaused = false, gameWin = false, musicOff = true;
+    private GameState gameState = GameState.MENU;
 
     private int screenWidth = getWidth();
     private int screenHeight = getHeight();
@@ -171,7 +173,7 @@ public class LemmingGame extends JGame {
         } else {
             g.setColor(Color.BLACK);
             g.fillRect(0, 0, getWidth(), getHeight());
-
+            levels.get(currentLevel).drawPreLevelScreen(g);
             levels.get(currentLevel).drawLevel(g,800,600);
             if (gamePaused) gamePauseView.draw(g);
             if (gameWin) gameWinView.draw(g);
@@ -209,11 +211,14 @@ public class LemmingGame extends JGame {
     private void loadLevels() throws IOException {
         // Crear spawn y salida
         spawn = new Spawn(600, 100,300); // Coordenadas X, Y
-        exit = new Exit(600, 400,300);   // Coordenadas X, Y
+        exit = new Exit(1000, 300,300);   // Coordenadas X, Y
 
 
         // Crear el mapa (dependiendo de tu clase)
-        Mapp map = new Mapp(1, 300, null, 600, 300, spawn ,exit); // o lo que corresponda
+
+        // Borrar los atributos exitX y exitY NO OLVIDARRR
+
+        Mapp map = new Mapp(1, 300, null, 700, 100, spawn ,exit); // o lo que corresponda
         levels.add(new Level(map, stock, 4, 10, currentLevel, "Just digging", exit, 600, 110));
         //levels.add(new Level(map, stock, screenWidth, screenHeight, currentLevel, getTitle(), exit, pointsSum, currentLevel));
         //levels.add(new Level(1, "Just digging", 0.25, 3, screenWidth, screenHeight));
