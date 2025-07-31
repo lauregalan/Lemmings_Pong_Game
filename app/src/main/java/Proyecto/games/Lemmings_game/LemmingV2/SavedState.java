@@ -11,6 +11,7 @@ public class SavedState implements LemmingState{
     @Override
     public void onEnter(Lemming lemming) {
         lemming.getLevel().sumSavedLemmings();
+        lemming.setActivite(false);
     }
 
     @Override

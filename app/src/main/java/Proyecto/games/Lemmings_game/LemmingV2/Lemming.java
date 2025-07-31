@@ -27,6 +27,7 @@ public class Lemming {
     private boolean isWalkingToRight = true;
     private boolean saved = false;
     private boolean isOnExit = false;
+    private boolean isActive;
 
     private LemmingAnimationState currentStateAnimation;
     private AbilityClass currentAbility;
@@ -278,11 +279,11 @@ public class Lemming {
     public boolean isOnExit() { return isOnExit; }
     public void setOnExit(boolean o) { this.isOnExit = o; }
     public void setAbility(AbilityClass abilityClass){ this.currentAbility = abilityClass;  }
-    
+    public void setActivite(boolean isActive){this.isActive = isActive; }
 
     public int getSpeed() { return speed; }
     public void setSpeed(int s) { this.speed = s; }
-
+    public boolean getActive(){return isActive;}
     public int getTileX() { return currentTileX; }
     public int getTileY() { return currentTileY; }
 }
